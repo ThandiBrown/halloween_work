@@ -1,0 +1,53 @@
+
+<html>
+<head>
+  <script type="text/javascript" src="dataHelper.js"></script>
+  <script type="text/javascript" src="data.js"></script>
+</head>
+<body>
+
+    <h2 class="gameTextDiv"></h2>
+
+    <button id="a" onClick="nextPkg(this.id)"></button>
+    <button id="b" onClick="nextPkg(this.id)">Press Me</button>
+    <button id="c" onClick="nextPkg(this.id)"></button>
+    <button id="d" onClick="nextPkg(this.id)"></button>
+
+    <p id="gamepad-info">Waiting for Gamepad.</p>
+
+<script>
+
+var gamepadInfo = document.getElementById("gamepad-info");
+var start;
+var rAF = window.mozRequestAnimationFrame ||
+  window.webkitRequestAnimationFrame ||
+  window.requestAnimationFrame;
+var rAFStop = window.mozCancelRequestAnimationFrame ||
+  window.webkitCancelRequestAnimationFrame ||
+  window.cancelRequestAnimationFrame;
+  window.addEventListener("gamepadconnected", function() {
+    var gp = navigator.getGamepads()[0];
+    gamepadInfo.innerHTML = "Gamepad connected at index " + gp.index + ": " + gp.id + ". It has " + gp.buttons.length + " buttons and " + gp.axes.length + " axes.";
+    gameLoop();
+  });
+
+  window.addEventListener("gamepaddisconnected", function() {
+    gamepadInfo.innerHTML = "Waiting for gamepad.";
+    rAFStop(start);
+  });
+
+  if(!('GamepadEvent' in window)) {
+    // No gamepad events available, poll instead.
+    var interval = setInterval(pollGamepads, 500);
+  }
+
+update_Site(p1);
+
+map.set(p1.choice_a.next, p1a);
+map.set(p1.choice_b.next, p1b);
+map.set(p1.choice_c.next, p1c);
+map.set(p1.choice_d.next, p1d);
+
+</script>
+</body>
+</html>

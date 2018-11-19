@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="data.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href='https://fonts.googleapis.com/css?family=Eater' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=IM Fell DW Pica' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Nosifer' rel='stylesheet'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <style>
+    /* clear site formatting */
+      html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,
+      figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+      	margin: 0;
+      	padding: 0;
+      	border: 0;
+      	font-size: 100%;
+      	vertical-align: baseline;
+      }
+
+      body{
+        font-family: "Lucida Sans", sans-serif;
+        background-color: black;
+        background-image: url("../media/d.jpg"); /* Woods image */
+      }
+
+    /*--- For the colored scrollbar ---*/
+      /* width */
+      ::-webkit-scrollbar { width: 10px; height: 4px; }
+      /* Track */
+      ::-webkit-scrollbar-track { background: black; }
+      /* Handle */
+      ::-webkit-scrollbar-thumb { background: black; }
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+    /* Halloween header */
+      .gameHeaderDiv {
+          background-color: black;
+          padding: 15px;
+          color: orange;
+      }
+
+    /* Halloween header font */
+      h1{
+        font-family: Eater;
+        font-size: 44px;
+      }
+
+    /* The start prompt div */
+      .startGameDiv {
+        padding: 35px;
+        padding-right: 0px;
+        width: 100%;
+        height: 100vh;
+        background: black;
+        color: white;
+        text-align:center;
+      }
+
+    /* The start button */
+      .startButton{
+        font-family: Nosifer;
+        color:red;
+        font-size: 60px;
+
+        background-color: black;
+        border: none;
+        text-align: center;
+        margin: 4px 2px;
+        height: 50vh;
+      }
+
+      .startButton:active{
+        transform: translateY(4px);
+      }
+
+    /* The game prompt div */
+      .gameDiv {
+        padding: 35px;
+        padding-right: 0px;
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+        height: 100vh;
+        background: black;
+        color: white;
+        display: none;
+      }
+
+    /* The text div inside the prompt div */
+      .gameTextDiv{
+        font-family:IM Fell DW Pica;
+        font-size: 36px;
+        margin-bottom: 40px;
+      }
+
+    /* The div around the choice buttons */
+      .gameButtonDiv{
+        padding-left: 5%;
+      }
+
+    /* The choice buttons */
+      .choiceButton{
+        max-width:90%;
+        min-width: 50%;
+        white-space: normal !important;
+        text-align: left;
+        height: 34px;
+        font-size: 26px;
+        font-weight: 200;
+        color: white;
+        font-family: IM Fell DW Pica;
+        padding-left: 5%;
+        padding-right: 3%;
+        border: none;
+        background-color: black;
+        border-radius: 50px;
+        margin-bottom: 24px;
+        box-shadow: 0 1px 12px 0 rgba(225, 225, 225, 1.0);
+
+
+      }
+
+      .choiceButton:hover{
+        color: darkred;
+        box-shadow: 0 1px 12px 0 darkred;
+      }
+
+      .choiceButton:focus, .startButton:focus {
+          outline: none;
+      }
+
+    /*  The screen resizing material
+      holdThis{
+        @media only screen and (max-width: 1000px) {
+          .gameTextDiv {
+              font-size: 30px;
+          }
+
+          .gameDiv{
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+          }
+        }
+
+        @media only screen and (max-width: 800px) {
+          .gameTextDiv {
+              font-size: 28px;
+          }
+        }
+
+        @media only screen and (max-width: 600px) {
+          .gameTextDiv {
+              font-size: 25px;
+          }
+        }
+
+        @media only screen and (max-width: 500px) {
+          .gameTextDiv {
+              font-size: 25px;
+          }
+          .gameDiv{
+            width: 100%;
+            margin-left: 0%;
+            margin-right: 0%;
+          }
+        }
+      }
+    */
+  </style>
+  <script>
+    // fading effect after Start Button is clicked
+    $(document).ready(function(){
+        $(".startButton").click(function(){
+            $(".startButton").fadeOut() // fade start button
+            $(".startGameDiv").fadeOut() // fade start button div
+            $(".gameDiv").fadeIn() // fade in the game div
+        });
+    });
+  </script>
+</head>
+
+<body>
+  <!-- background music start playing -->
+  <iframe src="../media/beforeStart.mp3" allow="autoplay" style="display:none" id="amazing"></iframe>
+  <audio id="afterStart" src="../media/afterStart.mp3" ></audio>
+
+  <!-- The Halloween Header -->
+  <div class="gameHeaderDiv">
+    <h1>Halloween</h1>
+  </div>
+
+  <!-- Start button div -->
+  <div class="startGameDiv">
+    <button  class="startButton" onclick="audioClear()">START</button>
+  </div>
+
+  <!-- Div of the game prompts -->
+  <div class="gameDiv">
+    <p class="gameTextDiv">
+    </p>
+    <div class="gameButtonDiv">
+      <button id="a" class="choiceButton" onClick="nextPkg(this.id)"></button>
+      <button id="b" class="choiceButton" onClick="nextPkg(this.id)"></button>
+      <button id="c" class="choiceButton" onClick="nextPkg(this.id)"></button>
+      <button id="d" class="choiceButton" onClick="nextPkg(this.id)"></button>
+    </div>
+  </div>
+
+<script>
+  // woods audio clip
+  var vid = document.getElementById("afterStart");
+  // stops the start music
+  function audioClear(){
+    var iframes = document.querySelectorAll('iframe');
+    for (var i = 0; i < iframes.length; i++) {
+      iframes[i].parentNode.removeChild(iframes[i]);
+    }
+
+    playAfterStart();
+  }
+  // plays the woods clip
+  function playAfterStart(){
+    vid.play();
+  }
+  // records the time of the woods clip
+  vid.ontimeupdate = function() {myFunction()};
+  // triggers the fading of woods clip at the end
+  function myFunction() {
+      if(vid.currentTime > 17.0){
+        fadeIt();
+      }
+  }
+  // fades the woods clip
+  function fadeIt() {
+      $('#afterStart').animate({volume: 0.06}, 1500);
+  };
+
+  update_Site(p1);
+
+  var letters = ["a", "b", "c", "d"];
+
+/* Adds a node's children to the map with a cooresponding pointer */
+function setToMap(childrenNumber, name){
+
+  var pointerName;
+  var coorObject;
+  var loopNumber;
+
+  for(var i = 0; i < childrenNumber; i++){
+    pointerName = eval(name + ".choice_" + letters[i] + ".next");
+    coorObject = eval(name + letters[i]);
+    map.set(pointerName, coorObject);
+  }
+
+}
+
+ setToMap(4, "p1");
+
+
+
+</script>
+</body>
+</html>

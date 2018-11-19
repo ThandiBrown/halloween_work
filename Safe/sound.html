@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+  <iframe src="../media/beforeStart.mp3" allow="autoplay" style="display:none" id="amazing"></iframe>
+  <audio id="afterStart" src="../media/afterStart.mp3" ></audio>
+
+
+  <button id="try" onclick="audioClear()">Start</button>
+  <p>Playback position: <span id="demo"></span></p>
+  <p id="gas">Video courtesy of Big Buck Bunny.</p>
+
+<script>
+
+
+  var vid = document.getElementById("afterStart");
+
+  function audioClear(){
+    var iframes = document.querySelectorAll('iframe');
+    for (var i = 0; i < iframes.length; i++) {
+      iframes[i].parentNode.removeChild(iframes[i]);
+    }
+    playAfterStart();
+  }
+
+  function playAfterStart(){
+    vid.play();
+  }
+
+  vid.ontimeupdate = function() {myFunction()};
+
+  function myFunction() {
+      document.getElementById("demo").innerHTML = vid.currentTime;
+      if(vid.currentTime > 17.0){
+      	document.getElementById("gas").innerHTML = "success";
+        fadeIt();
+      }
+  }
+
+    function fadeIt() {
+      $('#afterStart').animate({volume: 0.1}, 1500);
+    };
+
+
+  </script>
+</body>
+</html>
